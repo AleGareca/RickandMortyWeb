@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import Carrucel from './Carrucel'
 import  Header from './Header'
-import  Servicios from './Servicios'
 import  SobreNosotros from './SobreNosotros'
-import Habilidades from './Habilidades'
+import Footer from './Footer'
 import {characters}from './api.js'
 
 export default class Home extends Component {
@@ -29,9 +28,8 @@ export default class Home extends Component {
             <div>
                 <Header/>
                 <Carrucel />
-    
                 <SobreNosotros characters={this.state.characters}/>
-            
+                <Footer/>
             </div>
         )
     }
