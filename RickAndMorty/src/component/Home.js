@@ -17,6 +17,7 @@ export default class Home extends Component {
     componentDidMount(){
            characters().then((res => {
             this.setState({ characters: res.results})
+            console.log(res)
        
         }))
     }  

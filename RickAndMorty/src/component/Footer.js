@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import '../component/css/footer.css'
+import '../component/assets/vendor/ionicons/css/ionicons.css'
+import '../component/assets/vendor/ionicons/css/ionicons.min.css'
 
 export default class Footer extends Component {
     render() {
@@ -11,7 +14,7 @@ export default class Footer extends Component {
 
           <div class="col-lg-3 col-md-6 footer-info">
             <h3>Rick and Morty</h3>
-            <p>Web creada por divercion, para mostrar a un amigo o algun entrevistador de RRHH</p>
+            
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
@@ -34,9 +37,9 @@ export default class Footer extends Component {
             </p>
 
             <div class="social-links">
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://www.facebook.com/ale.gareca.566" class="ion-social-facebook facebook"><i class="fa fa-facebook"></i></a>
+              <a href="https://www.instagram.com/aleegareca/" class="ion-social-instagram"><i class="fa fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/alejandro-gareca-b0a301154" class="ion-social-linkedin"><i class="fa fa-linkedin"></i></a>
             </div>
 
           </div>

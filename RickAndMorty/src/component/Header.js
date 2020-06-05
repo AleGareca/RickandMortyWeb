@@ -16,7 +16,7 @@ export default class Header extends Component {
                 <li className="menu-active"><a href="#intro">Home</a></li>
                 <li><a href="#about">Personajes</a></li>
                 
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="#footer">Contacto</a></li>
               </ul>
             </nav>)
   }
