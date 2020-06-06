@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import './css/card.css'
-import {characters}from './api.js'
+import axios from 'axios';
+import Filter from './Filter'
+import ReactDOM from 'react-dom';
 
 export default class Buscador extends Component {
   constructor(props) {
         super(props);
         this.state = {
         characters:[],
+        search:"",
         genre:"Genero",
         status:"Estado",
-        characters:[]
+     
         
         };
+        this.changeSerch=this.changeSerch.bind(this)
         this.newStatusLive=this.newStatusLive.bind(this)
         this.newStatusDead=this.newStatusDead.bind(this)
         this.newStatusUnknow=this.newStatusUnknow.bind(this)
@@ -21,19 +25,29 @@ export default class Buscador extends Component {
         this.newGenreMale=this.newGenreMale.bind(this)
         this.newGenreFamale=this.newGenreFamale.bind(this)
         this.newGenreAll=this.newGenreAll.bind(this)
+        this.buscarPersonaje=this.buscarPersonaje.bind(this)
+        /*this.getGenre= this.getGenre.bind(this)
+        this.getSearch= this.getSearch.bind(this)
+        this.getStatus= this.getStatus.bind(this)*/
       }
 
 
     componentWillUpdate(p1,p2){
       if(this.state.status !== p2.status){
-      this.setState({status:p2.status})
-        //https://rickandmortyapi.com/api/character/?name=rick&status=alive
-        console.log(p2.status)
+      this.setState({status:p2.status })
+       console.log(p2)
       }
     }
+
+    changeSerch(event){
+      this.setState({search:event.target.value})
+    }
+
     newStatusLive(){
       this.setState({status:"live"})
     }
+    
+
     newStatusDead(){
       this.setState({status:"dead"})
     }
@@ -60,6 +74,14 @@ export default class Buscador extends Component {
     newGenreGenderless (){
       this.setState({genre:"genderless"})
     }
+
+    getStatus(){return(this.state.status==""?"":"status="+this.state.status)}
+    getGenre(){return(this.state.status==""?"":"genre="+this.state.genre)}
+    getSearch(){console.log(this.state.search) 
+      return(this.state.search== undefined?"":"name="+this.state.search)}
+
+
+
   renderDropdown(){
     return(<li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,9 +111,20 @@ export default class Buscador extends Component {
       </li>)
   }
 
-  buscarPersonaje(){
+  buscarPersonaje(event){
+    event.preventDefault()
+    let url =`https://rickandmortyapi.com/api/character/?${this.getSearch()}&${this.getStatus()}&${this.getGenre()}`
+    axios.get(url)
+    .then((res => {
+      this.setState({ characters: res.data.results})
     
+      
+    }))
+  
   }
+
+  
+
 
       
       renderNav(){
@@ -111,18 +144,50 @@ export default class Buscador extends Component {
      
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Nombre" aria-label="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" onClick={buscarPersonaje()} type="submit">Buscar</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Nombre" aria-label="Search" onChange={this.changeSerch}/>
+      <button class="btn btn-outline-success my-2 my-sm-0"  onClick={this.buscarPersonaje}>Buscar</button>
     </form>
   </div>
 </div>)
       }
 
+      renderCard(image,name){
+        return(
+          <div class="col-md-6 d-flex align-items-stretch">
+            <div class="card" style={{backgroundImage: "url("+image+")"}}>
+              <div class="card-body">
+                <h5 class="card-title"><a href="">{name}</a></h5>
+                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
+              </div>
+            </div>
+          </div>
+          )
+
+
+       
+    }
+
+    renderCards(){
+        
+            return( this.state.characters.map(e=>this.renderCard(e.image,e.name)))
+        }
+
+
       render(){
-        return(<div>{this.renderNav()}</div>)
+        return(<div>{this.renderNav()}
+
+<div class="container">
+                <div class="row">
+              {this.renderCards()}</div>
+              </div>
+              </div>)
       
               }
       
    
       
 }
+
+
+
+
