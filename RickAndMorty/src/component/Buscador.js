@@ -28,9 +28,7 @@ export default class Buscador extends Component {
         this.newgenderFamale=this.newgenderFamale.bind(this)
         this.newgenderAll=this.newgenderAll.bind(this)
         this.buscarPersonaje=this.buscarPersonaje.bind(this)
-        /*this.getgender= this.getgender.bind(this)
-        this.getSearch= this.getSearch.bind(this)
-        this.getStatus= this.getStatus.bind(this)*/
+    
         this.info=this.info.bind(this)
       }
 
@@ -85,7 +83,7 @@ export default class Buscador extends Component {
     sonIguales(s1,s2){return s1.split('').every(e=> s2.includes(e))}
 
   renderDropdown(){
-    return(<li class="nav-item dropdown">
+    return(<li class="nav-item dropdown ml-auto">
         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {this.state.status}
         </a>
@@ -135,15 +133,15 @@ export default class Buscador extends Component {
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
   
-    <ul class="navbar-nav ml-auto">
+    <div class="navbar-nav ml-auto">
      
     
       {this.renderDropdown()}
       {this.renderDropdown2()}
      
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Nombre" aria-label="Search" onChange={this.changeSerch}/>
+    </div>
+    <form class="form-inline my-2 my-lg-0 " >
+      <input class="form-control ml-auto" type="search" placeholder="Nombre" aria-label="Search" onChange={this.changeSerch}/>
       <button class="btn btn-outline-success my-2 my-sm-0"  onClick={this.buscarPersonaje}>Buscar</button>
     </form>
   </div>
@@ -177,23 +175,30 @@ export default class Buscador extends Component {
       console.log(this.state.search)
     }    
     renderGif(){
-      return(
+      return(<div className="mt-4" style={{ textAlign: "center", height: "50%" ,width:"100%"}}>
+                    <img src="https://cafetoons.net/wp-content/uploads/2019/11/a9529298e561cfd5d521f3acb4cb215a.gif"/>
+            </div>)
+             }
 
-<div className="mt-4" style={{ textAlign: "center", height: "100%" ,width:"100%"}}>
-
-<img src="https://cafetoons.net/wp-content/uploads/2019/11/a9529298e561cfd5d521f3acb4cb215a.gif"
-     />
-</div>)
-            
-    }
+        renderHeader(titulo,descriopcion){
+        return(<div>
+                    <header class="section-header mt-4">
+                        <h3>{titulo}</h3>
+                        <p>{descriopcion}</p>
+                    </header>
+                </div>)
+    }         
+    
 
 
       render(){
         return(<div>{this.renderNav()}
+        {this.renderHeader("Buscador", "Utiliza el sistema de filtros para buscar tus personajes")}
+                   
                  <div id="our-values" class="our-values">
                 <div class="container">
                   <div class="row">
-                    {console.log(this.state.characters.length)}
+
                     {this.state.characters.length==0? this.renderGif():this.renderCards()}
                   </div>
               </div>

@@ -61,7 +61,7 @@ export default class Carrucel extends Component {
 
       {this.renderCarrucelItemActive(imagen3,"Rick y Morty Api","Ve todos los personajes de esta API","#abaut")}
       {this.renderCarrucelItem(imagen1,"Bucador de personajes","Puedes iniciar la busqueda de tu personaje favorito","/serch")}
-      {this.renderCarrucelItem(imagen2,"Tecnologia","Conoce las tecnologias utilizadas en este proyecto","#about")}      
+      {this.renderCarrucelItem(imagen2,"Tecnologia","Conoce las tecnologias utilizadas en este proyecto","#tecnologia")}      
    
     
   </div>

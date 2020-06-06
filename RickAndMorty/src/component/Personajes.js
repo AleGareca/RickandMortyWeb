@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './assets/css/style.css'
-import imagen1 from'./assets/img/about-mission.jpg'
-import imagen2 from'./assets/img/about-plan.jpg'
-import imagen3 from'./assets/img/about-vision.jpg'
+
 
 export default class SobreNosotros extends Component {
 
