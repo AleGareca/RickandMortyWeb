@@ -3,7 +3,7 @@ import './css/card.css'
 import './css/navBar.css'
 import axios from 'axios';
 
-import Info from './Info'
+
 
 
 export default class Buscador extends Component {

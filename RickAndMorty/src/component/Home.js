@@ -4,6 +4,7 @@ import  Header from './Header'
 import  Personajes from './Personajes'
 import Footer from './Footer'
 import {characters}from './api.js'
+import Tecnologias from './Tecnologias'
 
 export default class Home extends Component {
 
@@ -30,6 +31,7 @@ export default class Home extends Component {
                 <Header/>
                 <Carrucel />
                 <Personajes characters={this.state.characters}/>
+                <Tecnologias/>
                 <Footer/>
             </div>
         )
