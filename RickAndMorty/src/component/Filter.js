@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../component/css/card.css'
 
 export default class Filter extends Component {
 

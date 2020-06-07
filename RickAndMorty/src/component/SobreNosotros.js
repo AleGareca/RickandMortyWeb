@@ -22,15 +22,15 @@ export default class SobreNosotros extends Component {
                 </div>)
     }
 
-    renderCard(image,delay,iconCss,titulo,descriopcion){
+    renderCard(image,delay,iconCss,titulo,descriopcion,id){
         return(<div class="col-md-4 wow fadeInUp" data-wow-delay={delay}>
             <div class="about-col">
               <div class="img">
-                  {console.log(image)}
+                
                 <img src={image} alt="" class="img-fluid"/>
                 <div class="icon"><i class={"ion-ios-"+iconCss+"-outline"}></i></div>
               </div>
-              <h2 class="title"><a href="#">{titulo}</a></h2>
+              <h2 class="title"><a href={id}>{titulo}</a></h2>
               <p>
                 {descriopcion}
               </p>
@@ -48,7 +48,7 @@ export default class SobreNosotros extends Component {
                         {console.log(this.props.characters)}
                         {this.renderHeader("Personajes","Estos son todos los personajes que nos provee la api. Selecciona uno de ellos para ver sus caracteristicas")}
                             <div class="row about-cols">
-                                {this.props.characters.map(e =>this.renderCard(e.image,"","",e.name,""))}
+                                {this.props.characters.map(e =>this.renderCard(e.image,"","",e.name,"",e.id))}
                                 
                             </div>
                     </div>

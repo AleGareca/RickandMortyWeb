@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './css/card.css'
 import axios from 'axios';
-import Filter from './Filter'
-import ReactDOM from 'react-dom';
+
+import Info from './Info'
+
 
 export default class Buscador extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class Buscador extends Component {
         this.state = {
         characters:[],
         search:"",
-        genre:"Genero",
+        gender:"Genero",
         status:"Estado",
      
         
@@ -20,15 +21,16 @@ export default class Buscador extends Component {
         this.newStatusDead=this.newStatusDead.bind(this)
         this.newStatusUnknow=this.newStatusUnknow.bind(this)
         this.newStatusAll=this.newStatusAll.bind(this)
-        this.newGenreGenderless=this.newGenreGenderless.bind(this)
-        this.newGenreUnknow=this.newGenreUnknow.bind(this)
-        this.newGenreMale=this.newGenreMale.bind(this)
-        this.newGenreFamale=this.newGenreFamale.bind(this)
-        this.newGenreAll=this.newGenreAll.bind(this)
+        this.newgenderGenderless=this.newgenderGenderless.bind(this)
+        this.newgenderUnknow=this.newgenderUnknow.bind(this)
+        this.newgenderMale=this.newgenderMale.bind(this)
+        this.newgenderFamale=this.newgenderFamale.bind(this)
+        this.newgenderAll=this.newgenderAll.bind(this)
         this.buscarPersonaje=this.buscarPersonaje.bind(this)
-        /*this.getGenre= this.getGenre.bind(this)
+        /*this.getgender= this.getgender.bind(this)
         this.getSearch= this.getSearch.bind(this)
         this.getStatus= this.getStatus.bind(this)*/
+        this.info=this.info.bind(this)
       }
 
 
@@ -58,29 +60,28 @@ export default class Buscador extends Component {
       this.setState({status:"Estado"})
     }
     
-    newGenreAll(){
-      this.setState({genre:"Genero"})
+    newgenderAll(){
+      this.setState({gender:"Genero"})
     }
-    newGenreMale(){
-      this.setState({genre:"Male"})
+    newgenderMale(){
+      this.setState({gender:"Male"})
     }
-    newGenreFamale(){
-      this.setState({genre:"Famale"})
+    newgenderFamale(){
+      this.setState({gender:"Famale"})
     }
-    newGenreUnknow(){
-      this.setState({genre:"unknow"})
-    }
-
-    newGenreGenderless (){
-      this.setState({genre:"genderless"})
+    newgenderUnknow(){
+      this.setState({gender:"unknow"})
     }
 
-    getStatus(){return(this.state.status==""?"":"status="+this.state.status)}
-    getGenre(){return(this.state.status==""?"":"genre="+this.state.genre)}
-    getSearch(){console.log(this.state.search) 
-      return(this.state.search== undefined?"":"name="+this.state.search)}
+    newgenderGenderless (){
+      this.setState({gender:"genderless"})
+    }
 
+    getStatus(){return(this.sonIguales(this.state.status,"Estado")?"":"status="+this.state.status)}
+    getgender(){return(this.sonIguales(this.state.gender,"Genero")?"":"gender="+this.state.gender)}
+    getSearch(){return(this.sonIguales(this.state.status,"")?"":"name="+this.state.search)}
 
+    sonIguales(s1,s2){return s1.split('').every(e=> s2.includes(e))}
 
   renderDropdown(){
     return(<li class="nav-item dropdown">
@@ -99,21 +100,21 @@ export default class Buscador extends Component {
   renderDropdown2(){
     return(<li class="nav-item dropdown  ml-auto">
         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {this.state.genre}
+          {this.state.gender}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <div class="dropdown-item" href="" onClick={this.newGenreMale} >Hombre</div>
-          <div class="dropdown-item" href="" onClick={this.newGenreFamale} >Mujer</div>
-          <div class="dropdown-item" href=""onClick={this.newGenreGenderless } >Sin genero</div>
-          <div class="dropdown-item" href="" onClick={this.newGenreUnknow}>Desconocido</div>
-          <div class="dropdown-item" href="" onClick={this.newGenreAll}>Todo</div>
+        <div class="dropdown-item" href="" onClick={this.newgenderMale} >Hombre</div>
+          <div class="dropdown-item" href="" onClick={this.newgenderFamale} >Mujer</div>
+          <div class="dropdown-item" href=""onClick={this.newgenderGenderless } >Sin genero</div>
+          <div class="dropdown-item" href="" onClick={this.newgenderUnknow}>Desconocido</div>
+          <div class="dropdown-item" href="" onClick={this.newgenderAll}>Todo</div>
         </div>
       </li>)
   }
 
   buscarPersonaje(event){
     event.preventDefault()
-    let url =`https://rickandmortyapi.com/api/character/?${this.getSearch()}&${this.getStatus()}&${this.getGenre()}`
+    let url =`https://rickandmortyapi.com/api/character/?${this.getSearch()}&${this.getStatus()}&${this.getgender()}`
     axios.get(url)
     .then((res => {
       this.setState({ characters: res.data.results})
@@ -123,10 +124,7 @@ export default class Buscador extends Component {
   
   }
 
-  
 
-
-      
       renderNav(){
         return(<div class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Rick y Morty</a>
@@ -151,16 +149,17 @@ export default class Buscador extends Component {
 </div>)
       }
 
-      renderCard(image,name){
+      renderCard(image,name,id){
         return(
-          <div class="col-md-6 d-flex align-items-stretch">
+          <div key={name} class="col-md-6 d-flex align-items-stretch mt-4">
             <div class="card" style={{backgroundImage: "url("+image+")"}}>
               <div class="card-body">
-                <h5 class="card-title"><a href="">{name}</a></h5>
-                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
+                <div class="card-title"><a href={id}>{name}</a></div>
+                <div class="read-more"><a href={id}><i class="icofont-arrow-right"></i> Info</a></div>
               </div>
             </div>
           </div>
+          
           )
 
 
@@ -169,16 +168,23 @@ export default class Buscador extends Component {
 
     renderCards(){
         
-            return( this.state.characters.map(e=>this.renderCard(e.image,e.name)))
+            return( this.state.characters.map(e=>this.renderCard(e.image,e.name,e.id)))
         }
+
+    info(){
+      
+      console.log(this.state.search)
+    }    
 
 
       render(){
         return(<div>{this.renderNav()}
-
-<div class="container">
-                <div class="row">
-              {this.renderCards()}</div>
+                 <div id="our-values" class="our-values">
+                <div class="container">
+                  <div class="row">
+                    {this.renderCards()}
+                  </div>
+              </div>
               </div>
               </div>)
       
