@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './css/card.css'
+import './css/navBar.css'
 import axios from 'axios';
 
 import Info from './Info'
@@ -126,14 +127,14 @@ export default class Buscador extends Component {
 
 
       renderNav(){
-        return(<div class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Rick y Morty</a>
+        return(<div class="navbar navbar-expand-lg navbar-dark bg-dark" >
+  <a class="navbar-brand" href="/">Rick y Morty</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+  
     <ul class="navbar-nav ml-auto">
      
     
@@ -175,6 +176,16 @@ export default class Buscador extends Component {
       
       console.log(this.state.search)
     }    
+    renderGif(){
+      return(
+
+<div className="mt-4" style={{ textAlign: "center", height: "100%" ,width:"100%"}}>
+
+<img src="https://cafetoons.net/wp-content/uploads/2019/11/a9529298e561cfd5d521f3acb4cb215a.gif"
+     />
+</div>)
+            
+    }
 
 
       render(){
@@ -182,7 +193,8 @@ export default class Buscador extends Component {
                  <div id="our-values" class="our-values">
                 <div class="container">
                   <div class="row">
-                    {this.renderCards()}
+                    {console.log(this.state.characters.length)}
+                    {this.state.characters.length==0? this.renderGif():this.renderCards()}
                   </div>
               </div>
               </div>

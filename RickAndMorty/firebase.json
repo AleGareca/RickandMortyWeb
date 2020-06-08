@@ -5,6 +5,19 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "*",
+        "destination": "/index.html",
+        "type": 301
+      }
+      , {
+       
+        "source": "/serch",
+        "destination": "/index.html",
+        "type": 301
+      }
     ]
   }
 }

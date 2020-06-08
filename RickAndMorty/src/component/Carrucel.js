@@ -17,9 +17,6 @@ export default class Carrucel extends Component {
 
  }
 
-
-
-
       renderCarrucelItemActive(imagen,titulo,descripcion){
 
         return(<div class="carousel-item active">
