@@ -43,7 +43,7 @@ export default class SobreNosotros extends Component {
             <div>
                 <section id="about">
                     <div class="container">
-                        {console.log(this.props.characters)}
+                      
                         {this.renderHeader("Personajes","Estos son todos los personajes que nos provee la api. Selecciona uno de ellos para ver sus caracteristicas")}
                             <div class="row about-cols">
                                 {this.props.characters.map(e =>this.renderCard(e.image,"","",e.name,"",e.id))}

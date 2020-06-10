@@ -5,6 +5,7 @@ import  Personajes from './Personajes'
 import Footer from './Footer'
 import {characters}from './api.js'
 import Tecnologias from './Tecnologias'
+import musica from '../imagenes/Intro.mp3'
 
 export default class Home extends Component {
 
@@ -18,7 +19,7 @@ export default class Home extends Component {
     componentDidMount(){
            characters().then((res => {
             this.setState({ characters: res.results})
-            console.log(res)
+        
        
         }))
     }  
@@ -28,6 +29,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
+                <audio autoPlay src={musica} />
                 <Header/>
                 <Carrucel />
                 <Personajes characters={this.state.characters}/>

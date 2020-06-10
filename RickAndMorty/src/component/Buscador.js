@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './css/card.css'
 import './css/navBar.css'
-import axios from 'axios';
+import axios from 'axios'
+import musica from '../imagenes/cabe.mp3'
 
 
 
@@ -192,7 +193,10 @@ export default class Buscador extends Component {
 
 
       render(){
-        return(<div>{this.renderNav()}
+        return(<div>
+          
+           <audio autoPlay src={musica} loop/>
+          {this.renderNav()}
         {this.renderHeader("Buscador", "Utiliza el sistema de filtros para buscar tus personajes")}
                    
                  <div id="our-values" class="our-values">
