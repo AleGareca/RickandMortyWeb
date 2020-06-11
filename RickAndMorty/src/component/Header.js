@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import musica from '../imagenes/intro2.mp3'
 
 
 export default class Header extends Component {
@@ -53,6 +54,7 @@ handleScroll(event){
         return(<header id="header" onScroll={this.handleScroll} className= {this.state.scrolled}>
          
                   <div className="container-fluid">
+                 
                     {this.renderTitulo("Rick y Morty")}                  
                     {this.renderNav()}  
                   </div>

@@ -3,10 +3,7 @@ import './assets/css/style.css'
 
 
 export default class SobreNosotros extends Component {
-
-
-
-    
+  
       listImageCharacters(){
         return this.props.characters.map(i=>i.image)
       }

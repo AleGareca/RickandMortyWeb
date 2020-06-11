@@ -14,7 +14,7 @@ export default class Footer extends Component {
 
           <div class="col-lg-3 col-md-6 footer-info">
             <h3>Rick and Morty</h3>
-            
+
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">

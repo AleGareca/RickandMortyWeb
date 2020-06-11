@@ -11,7 +11,7 @@ export default class Tecnologias extends Component {
       <div class="container">
 
         <header class="section-header">
-          <h3>Tecnologias</h3>
+          <h3>Tecnología</h3>
         </header>
 
         <div class="owl-carousel tecnologia-carousel">

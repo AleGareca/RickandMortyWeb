@@ -16,7 +16,7 @@ export default class Buscador extends Component {
         gender:"Genero",
         status:"Estado",
      
-        
+    
         };
         this.changeSerch=this.changeSerch.bind(this)
         this.newStatusLive=this.newStatusLive.bind(this)
@@ -67,7 +67,7 @@ export default class Buscador extends Component {
       this.setState({gender:"Male"})
     }
     newgenderFamale(){
-      this.setState({gender:"Famale"})
+      this.setState({gender:"Female"})
     }
     newgenderUnknow(){
       this.setState({gender:"unknow"})
